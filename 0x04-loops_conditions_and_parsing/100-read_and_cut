@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# this is a very cool comment to this code
+
+while read LINE;
+do
+	echo "$LINE" | cut -d":" -f1,3,6
+done < /etc/passwd
