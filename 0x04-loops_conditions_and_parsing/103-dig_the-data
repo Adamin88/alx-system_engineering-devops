@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# this is a very cool comment to this code
-
-awk '{print $1, $9}' 'apache-access.log' | sort -n | uniq -c | sort -nr
