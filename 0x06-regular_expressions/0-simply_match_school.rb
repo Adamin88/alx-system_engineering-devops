@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
 
-regex = /School/
-puts ARGV[0].scan(regex).join
+arg = ARGV[0]
+
+pattern = /School/
+
+matches = arg.scan(pattern)
+
+puts "#{matches.join()}"
