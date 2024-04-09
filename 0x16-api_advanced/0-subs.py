@@ -1,18 +1,23 @@
 #!/usr/bin/python3
 """
-Subroutine that grabs the number of subscribers
+    Script that request the number of subscribers of a user from reddit
 """
 import requests
 
 
 def number_of_subscribers(subreddit):
     """
-    Query API and return the number of subscribers if it exists
-    Return 0 if API does not exist
+        function that returns the number of subscribers
     """
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    req = requests.get(url, headers={'User-Agent': 'lee'})
-    if (req.status_code == requests.codes.ok):
-        big_json = req.json()
-        return(big_json['data']['subscribers'])
-    return (0)
+    url = " https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+    }
+    response = requests.get(url=url, headers=headers, allow_redirects=False)
+    if response.status_code == 404:
+        return 0
+
+    data_json = response.json()
+    data = data_json.get('data')
+
+    return data.get('subscribers')
