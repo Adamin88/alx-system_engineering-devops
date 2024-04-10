@@ -7,7 +7,7 @@ def top_ten(subreddit):
     """ show the top 10 posts in a subreddit """
     try:
         # Change the user agent
-        headers = {'User-Agent': 'Adamin88'}
+        headers = {'User-Agent': 'Dry_Scientist1026'}
         payload = {'t': 'all', 'limit': '10'}
         request = requests.get('https://api.reddit.com/r/{}/hot'.
                                format(subreddit), headers=headers,
