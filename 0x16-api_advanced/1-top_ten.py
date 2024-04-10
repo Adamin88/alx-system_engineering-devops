@@ -1,21 +1,24 @@
 #!/usr/bin/python3
-"""Find the number of subs"""
+'''
+    this module contains the function top_ten
+'''
 import requests
+from sys import argv
 
 
 def top_ten(subreddit):
-    """ show the top 10 posts in a subreddit """
+    '''
+        returns the top ten posts for a given subreddit
+    '''
+    user = {'User-Agent': 'Dry_Scientist1026'}
+    url = requests.get('https://www.reddit.com/r/{}/hot/.json?limit=10'
+                       .format(subreddit), headers=user).json()
     try:
-        # Change the user agent
-        headers = {'User-Agent': 'Dry_Scientist1026'}
-        payload = {'t': 'all', 'limit': '10'}
-        request = requests.get('https://api.reddit.com/r/{}/hot'.
-                               format(subreddit), headers=headers,
-                               params=payload)
-        top_posts = request.json()
+        for post in url.get('data').get('children'):
+            print(post.get('data').get('title'))
+    except Exception:
+        print(None)
 
-        for post in top_posts['data']['children']:
-            print(post['data']['title'])
 
-    except:
-        print("None")
+if __name__ == "__main__":
+    top_ten(argv[1])
